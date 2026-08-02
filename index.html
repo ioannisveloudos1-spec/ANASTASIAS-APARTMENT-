@@ -1,0 +1,408 @@
+<!DOCTYPE html>
+<html lang="el">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Anastasia's Apartment Lavrio</title>
+    <style>
+        :root {
+            --primary-color: #1a365d;
+            --secondary-color: #2b6cb0;
+            --accent-color: #d69e2e;
+            --text-color: #2d3748;
+            --bg-light: #f7fafc;
+            --white: #ffffff;
+            --border-color: #e2e8f0;
+        }
+
+        * {
+            box-sizing: border-box;
+            margin: 0;
+            padding: 0;
+        }
+
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            color: var(--text-color);
+            background-color: var(--bg-light);
+            background-image: linear-gradient(rgba(26, 54, 93, 0.85), rgba(26, 54, 93, 0.85)), url('entrance (1).jpg');
+            background-size: cover;
+            background-position: center;
+            background-attachment: fixed;
+            line-height: 1.6;
+            padding: 20px;
+        }
+
+        /* Στυλ για τη μπάρα μετάφρασης στην κορυφή */
+        .language-bar {
+            background-color: #2d3748;
+            padding: 8px 15px;
+            text-align: right;
+            border-top-left-radius: 12px;
+            border-top-right-radius: 12px;
+        }
+
+        .container {
+            max-width: 950px;
+            margin: 30px auto;
+            background: var(--white);
+            border-radius: 12px;
+            box-shadow: 0 10px 25px rgba(0, 0, 0, 0.2);
+            overflow: hidden;
+        }
+
+        header {
+            background-color: var(--primary-color);
+            color: var(--white);
+            padding: 30px;
+            text-align: center;
+            border-bottom: 4px solid var(--accent-color);
+        }
+
+        .logo-container {
+            margin-bottom: 20px;
+        }
+
+        .logo-container img {
+            max-width: 160px;
+            height: auto;
+            border-radius: 50%;
+            border: 3px solid var(--accent-color);
+            box-shadow: 0 4px 10px rgba(0,0,0,0.3);
+            background: #ffffff;
+        }
+
+        header h1 {
+            font-size: 2rem;
+            margin-bottom: 10px;
+        }
+
+        header p {
+            font-size: 1.1rem;
+            color: #cbd5e0;
+        }
+
+        .content {
+            padding: 30px;
+        }
+
+        section {
+            margin-bottom: 35px;
+        }
+
+        h2 {
+            color: var(--primary-color);
+            font-size: 1.5rem;
+            margin-bottom: 15px;
+            padding-bottom: 8px;
+            border-bottom: 2px solid var(--border-color);
+        }
+
+        p {
+            margin-bottom: 15px;
+            text-align: justify;
+        }
+
+        details {
+            background: #f8fafc;
+            border: 1px solid var(--border-color);
+            border-radius: 8px;
+            margin-bottom: 15px;
+            overflow: hidden;
+            transition: all 0.3s ease;
+        }
+
+        details[open] {
+            background: var(--white);
+            box-shadow: 0 4px 12px rgba(0, 0, 0, 0.05);
+        }
+
+        summary {
+            font-size: 1.15rem;
+            font-weight: bold;
+            color: var(--primary-color);
+            padding: 15px 20px;
+            cursor: pointer;
+            outline: none;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            background-color: #edf2f7;
+            transition: background 0.2s ease;
+        }
+
+        summary:hover {
+            background-color: #e2e8f0;
+            color: var(--secondary-color);
+        }
+
+        .accordion-content {
+            padding: 20px;
+        }
+
+        .gallery {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: 15px;
+        }
+
+        .gallery-item {
+            border-radius: 8px;
+            overflow: hidden;
+            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+            background: var(--white);
+            border: 1px solid var(--border-color);
+        }
+
+        .gallery-item img {
+            width: 100%;
+            height: 150px;
+            object-fit: cover;
+            display: block;
+        }
+
+        .gallery-caption {
+            background: var(--primary-color);
+            color: var(--white);
+            padding: 6px;
+            text-align: center;
+            font-size: 0.85rem;
+        }
+
+        .highlight-box {
+            background-color: #fffaf0;
+            border-left: 5px solid var(--accent-color);
+            padding: 20px;
+            border-radius: 0 8px 8px 0;
+            margin-bottom: 20px;
+        }
+
+        .highlight-box h3 {
+            color: #b7791f;
+            margin-bottom: 10px;
+        }
+
+        .rules-card {
+            background-color: #fff5f5;
+            border-left: 5px solid #e53e3e;
+            padding: 20px;
+            border-radius: 0 8px 8px 0;
+        }
+
+        .rules-card h3 {
+            color: #c53030;
+            margin-bottom: 10px;
+        }
+
+        .rules-card ul {
+            margin-top: 10px;
+            margin-left: 20px;
+        }
+
+        .rules-card li {
+            margin-bottom: 8px;
+        }
+
+        .booking-cta {
+            text-align: center;
+            background: var(--bg-light);
+            padding: 25px;
+            border-radius: 8px;
+            border: 1px solid var(--border-color);
+        }
+
+        .btn {
+            display: inline-block;
+            background-color: var(--accent-color);
+            color: var(--primary-color);
+            font-weight: bold;
+            padding: 12px 30px;
+            border-radius: 30px;
+            text-decoration: none;
+            transition: background 0.3s ease;
+            margin-top: 15px;
+            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+        }
+
+        .btn:hover {
+            background-color: #b7791f;
+            color: var(--white);
+        }
+
+        footer {
+            background-color: var(--primary-color);
+            color: var(--white);
+            text-align: center;
+            padding: 15px;
+            font-size: 0.9rem;
+        }
+    </style>
+</head>
+<body>
+
+    <div class="container">
+        <!-- Μπάρα Επιλογής Γλώσσας -->
+        <div class="language-bar">
+            <div id="google_translate_element"></div>
+        </div>
+
+        <header>
+            <div class="logo-container">
+                <img src="logo.png" alt="Anastasia's Apartment Lavrio Logo">
+            </div>
+            <h1>Anastasia's Apartment Lavrio</h1>
+            <p>Χαράλαμπου Ψαρρού 21, Λαύριο</p>
+        </header>
+
+        <div class="content">
+            <section>
+                <h2>Καλώς Ορίσατε!</h2>
+                <p>Σας καλωσορίζουμε θερμά στον διαδικτυακό μας τόπο. Το διαμέρισμά μας αποτελεί την ιδανική επιλογή για τη διαμονή σας στο Λαύριο, είτε ταξιδεύετε για αναψυχή είτε ετοιμάζεστε να επιβιβαστείτε στο φεριμπότ για τα νησιά την επόμενη μέρα. Βρισκόμαστε σε προνομιακή και ήσυχη τοποθεσία, πολύ κοντά στο λιμάνι και στην τοπική αγορά.</p>
+            </section>
+
+            <section>
+                <h2>Φωτογραφίες του Καταλύματος ανά Χώρο</h2>
+                <p>Κάντε κλικ σε κάθε ενότητα για να δείτε τις φωτογραφίες του αντίστοιχου χώρου:</p>
+
+                <!-- 1. Κεντρική Είσοδος & Εξωτερικός Χώρος -->
+                <details>
+                    <summary>🏛️ Κεντρική Είσοδος & Εξωτερικός Χώρος</summary>
+                    <div class="accordion-content">
+                        <div class="gallery">
+                            <div class="gallery-item">
+                                <img src="entrance (1).jpg" alt="Είσοδος 1">
+                                <div class="gallery-caption">Είσοδος 1</div>
+                            </div>
+                            <div class="gallery-item">
+                                <img src="entrance (2).jpg" alt="Είσοδος 2">
+                                <div class="gallery-caption">Είσοδος 2</div>
+                            </div>
+                            <div class="gallery-item">
+                                <img src="entrance (3).jpg" alt="Είσοδος 3">
+                                <div class="gallery-caption">Είσοδος 3</div>
+                            </div>
+                        </div>
+                    </div>
+                </details>
+
+                <!-- 2. Σαλόνι & Hall -->
+                <details>
+                    <summary>🛋️ Σαλόνι & Hall</summary>
+                    <div class="accordion-content">
+                        <div class="gallery">
+                            <div class="gallery-item">
+                                <img src="livingroom1.png" alt="Σαλόνι">
+                                <div class="gallery-caption">Σαλόνι</div>
+                            </div>
+                            <div class="gallery-item">
+                                <img src="hall.jpg" alt="Hall">
+                                <div class="gallery-caption">Hall</div>
+                            </div>
+                        </div>
+                    </div>
+                </details>
+
+                <!-- 3. Κουζίνα -->
+                <details>
+                    <summary>🍳 Κουζίνα</summary>
+                    <div class="accordion-content">
+                        <div class="gallery">
+                            <div class="gallery-item">
+                                <img src="kitchen1 (1).jpg" alt="Κουζίνα 1">
+                                <div class="gallery-caption">Κουζίνα 1</div>
+                            </div>
+                            <div class="gallery-item">
+                                <img src="kitchen1 (2).jpg" alt="Κουζίνα 2">
+                                <div class="gallery-caption">Κουζίνα 2</div>
+                            </div>
+                            <div class="gallery-item">
+                                <img src="kitchen1 (3).jpg" alt="Κουζίνα 3">
+                                <div class="gallery-caption">Κουζίνα 3</div>
+                            </div>
+                        </div>
+                    </div>
+                </details>
+
+                <!-- 4. Υπνοδωμάτια -->
+                <details>
+                    <summary>🛲 Υπνοδωμάτια</summary>
+                    <div class="accordion-content">
+                        <div class="gallery">
+                            <div class="gallery-item">
+                                <img src="bedroom1 (1).jpg" alt="Υπνοδωμάτιο 1">
+                                <div class="gallery-caption">Υπνοδωμάτιο 1</div>
+                            </div>
+                            <div class="gallery-item">
+                                <img src="bedroom2 (1).png" alt="Υπνοδωμάτιο 2">
+                                <div class="gallery-caption">Υπνοδωμάτιο 2</div>
+                            </div>
+                        </div>
+                    </div>
+                </details>
+
+                <!-- 5. Μπάνιο -->
+                <details>
+                    <summary>🚿 Μπάνιο</summary>
+                    <div class="accordion-content">
+                        <div class="gallery">
+                            <div class="gallery-item">
+                                <img src="bathroom (1).jpg" alt="Μπάνιο 1">
+                                <div class="gallery-caption">Μπάνιο 1</div>
+                            </div>
+                            <div class="gallery-item">
+                                <img src="bathroom (2).jpg" alt="Μπάνιο 2">
+                                <div class="gallery-caption">Μπάνιο 2</div>
+                            </div>
+                        </div>
+                    </div>
+                </details>
+            </section>
+
+            <section>
+                <h2>Απευθείας Κράτηση & Εκπτωτική Τιμή</h2>
+                <div class="highlight-box">
+                    <h3>Προνομιακή Τιμή Χωρίς Προμήθειες Πλατφορμών</h3>
+                    <p>Κάνοντας την κράτησή σας απευθείας μαζί μας, παρακάμπτετε τις πλατφόρμες και επωφελείστε από την <strong>ειδική εκπτωτική τιμή</strong> μας!</p>
+                </div>
+                <p><strong>Όροι Προκαταβολής:</strong> Για την επιβεβαίωση οποιασδήποτε κράτησης, απαιτείται η προκαταβολή του ποσού των <strong>50 ευρώ ανά ημέρα διανυκτέρευσης</strong>.</p>
+                <p><strong>Βεβαίωση Κράτησης:</strong> Με την ολοκλήρωση της προκαταβολής, σας αποστέλλουμε σε μορφή PDF τη βεβαίωση της κράτησής σας με όλα τα στοιχεία.</p>
+            </section>
+
+            <section>
+                <h2>Κανόνες Διαμονής</h2>
+                <div class="rules-card">
+                    <h3>Σημαντικές Σημειώσεις & Όροι</h3>
+                    <ul>
+                        <li><strong>Απαγόρευση Καπνίσματος:</strong> Το κάπνισμα απαγορεύεται αυστηρά εντός του εσωτερικού χώρου.</li>
+                        <li><strong>Κατοικίδια:</strong> Δεν επιτρέπονται κατοικίδια ζώα.</li>
+                        <li><strong>Επισκέπτες:</strong> Δεν επιτρέπονται εξωτερικοί επισκέπτες πέρα από τα δηλωμένα άτομα.</li>
+                    </ul>
+                </div>
+            </section>
+
+            <section class="booking-cta">
+                <h2>Επικοινωνία & Κρατήσεις</h2>
+                <p>Επικοινωνήστε μαζί μας για να ελέγξουμε τη διαθεσιμότητα και να εξασφαλίσετε την προνομιακή σας τιμή.</p>
+                <a href="https://wa.me/306940636906?text=Γεια%20sας,%20ενδιαφέρομαι%20για%20διαθεσιμότητα%20στο%20Anastasia's%20Apartment%20στο%20Λαύριο." target="_blank" class="btn">💬 Κάντε Κράτηση μέσω WhatsApp</a>
+            </section>
+        </div>
+
+        <footer>
+            <p>&copy; 2026 Anastasia's Apartment Lavrio. Με επιφύλαξη παντός δικαιώματος.</p>
+        </footer>
+    </div>
+
+    <!-- Script για τη Google Μετάφραση σε όλες τις γλώσσες -->
+    <script type="text/javascript">
+        function googleTranslateElementInit() {
+            new google.translate.TranslateElement({
+                pageLanguage: 'el',
+                includedLanguages: 'en,de,fr,it,es,no,zh-CN,ru,sv,nl',
+                layout: google.translate.TranslateElement.InlineLayout.SIMPLE
+            }, 'google_translate_element');
+        }
+    </script>
+    <script type="text/javascript" src="//translate.google.com/translate_a/element.js?cb=googleTranslateElementInit"></script>
+
+</body>
+</html>
