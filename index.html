@@ -82,6 +82,45 @@
             box-shadow: 0 5px 15px rgba(0,0,0,0.2);
         }
 
+        /* Σημείωση Επικοινωνίας / Κράτησης */
+        .booking-notice {
+            background: linear-gradient(135deg, #2a4365, #1a365d);
+            color: #ffffff;
+            text-align: center;
+            padding: 30px 20px;
+            margin: 40px 0 20px 0;
+            border-radius: 8px;
+            box-shadow: 0 4px 10px rgba(0,0,0,0.15);
+        }
+        .booking-notice h3 {
+            margin-top: 0;
+            color: #d4af37;
+            font-size: 24px;
+        }
+        .booking-notice p {
+            font-size: 16px;
+            line-height: 1.6;
+            max-width: 700px;
+            margin: 0 auto;
+            color: #e2e8f0;
+        }
+        .whatsapp-link {
+            display: inline-block;
+            margin-top: 15px;
+            background-color: #25d366;
+            color: #ffffff;
+            padding: 12px 24px;
+            border-radius: 30px;
+            text-decoration: none;
+            font-weight: bold;
+            font-size: 18px;
+            box-shadow: 0 4px 10px rgba(0,0,0,0.2);
+            transition: background-color 0.2s;
+        }
+        .whatsapp-link:hover {
+            background-color: #20ba5a;
+        }
+
         /* Modal Lightbox Overlay */
         #lightbox-modal {
             display: none;
@@ -183,10 +222,9 @@
     <div class="photo-grid">
         <div class="photo-item"><img src="bedroom1 (1).jpeg" alt="Υπνοδωμάτιο 1 - 1" class="gallery-img"></div>
         <div class="photo-item"><img src="bedroom1 (1).png" alt="Υπνοδωμάτιο 1 - 2" class="gallery-img"></div>
-        <div class="photo-item"><img src="bedroom2 (1).jpg" alt="Υπνοδωμάτιο 2 - 1" class="gallery-img"></div>
-        <div class="photo-item"><img src="bedroom2 (1).png" alt="Υπνοδωμάτιο 2 - 2" class="gallery-img"></div>
-        <div class="photo-item"><img src="bedroom2 (2).png" alt="Υπνοδωμάτιο 2 - 3" class="gallery-img"></div>
-        <div class="photo-item"><img src="bedroom2 (3).png" alt="Υπνοδωμάτιο 2 - 4" class="gallery-img"></div>
+        <div class="photo-item"><img src="bedroom2 (1).png" alt="Υπνοδωμάτιο 2 - 1" class="gallery-img"></div>
+        <div class="photo-item"><img src="bedroom2 (2).png" alt="Υπνοδωμάτιο 2 - 2" class="gallery-img"></div>
+        <div class="photo-item"><img src="bedroom2 (3).png" alt="Υπνοδωμάτιο 2 - 3" class="gallery-img"></div>
     </div>
 
     <!-- Ενότητα: Μπάνιο -->
@@ -195,6 +233,13 @@
         <div class="photo-item"><img src="bathroom (1).jpg" alt="Μπάνιο 1" class="gallery-img"></div>
         <div class="photo-item"><img src="bathroom (2).jpg" alt="Μπάνιο 2" class="gallery-img"></div>
         <div class="photo-item"><img src="bathroom (3).jpg" alt="Μπάνιο 3" class="gallery-img"></div>
+    </div>
+
+    <!-- Σημείωση για Απευθείας Κράτηση -->
+    <div class="booking-notice">
+        <h3>Απευθείας Κράτηση</h3>
+        <p>Για να πραγματοποιήσετε απευθείας κράτηση στο κατάλυμά μας, παρακαλούμε να μας στείλετε μήνυμα στο WhatsApp. Θα χαρούμε να σας εξυπηρετήσουμε και θα απαντήσουμε το αργότερο εντός 24 ωρών.</p>
+        <a href="https://wa.me/306940636906" class="whatsapp-link" target="_blank">💬 WhatsApp: 6940 636 906</a>
     </div>
 </div>
 
