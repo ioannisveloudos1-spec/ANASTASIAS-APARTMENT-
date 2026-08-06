@@ -3,313 +3,973 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Anastasia's Apartment - Φωτογραφίες Καταλύματος</title>
+    <title>Anastasia's Apartment | Λαύριο</title>
     <style>
-        body {
-            font-family: Arial, sans-serif;
-            background-color: #f8f9fa;
-            color: #333;
+        :root {
+            --primary-color: #1a365d;
+            --accent-color: #c5a059;
+            --bg-color: #f8fafc;
+            --text-color: #334155;
+            --white: #ffffff;
+            --shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1), 0 2px 4px -1px rgba(0, 0, 0, 0.06);
+            --transition: all 0.3s ease;
+        }
+
+        * {
+            box-sizing: border-box;
             margin: 0;
             padding: 0;
         }
-        /* Κομψό μπλε φόντο στην κορυφή */
-        .hero-header {
-            background: linear-gradient(135deg, #1a365d, #2a4365);
-            color: #ffffff;
-            text-align: center;
-            padding: 40px 20px;
-            margin-bottom: 30px;
-            box-shadow: 0 4px 10px rgba(0,0,0,0.15);
+
+        body {
+            font-family: system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Oxygen, Ubuntu, Cantarell, sans-serif;
+            background-color: var(--bg-color);
+            color: var(--text-color);
+            line-height: 1.6;
+            position: relative;
         }
-        /* Λογότυπο μέσα σε χρυσό κύκλο / στεφάνι */
-        .logo-container {
-            display: inline-block;
-            padding: 8px;
-            background: #ffffff;
-            border-radius: 50%;
-            box-shadow: 0 4px 15px rgba(212, 175, 55, 0.6);
-            border: 3px solid #d4af37;
-            margin-bottom: 20px;
+
+        /* Fixed / Scrolling Faded Background Logo */
+        body::before {
+            content: "";
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100vw;
+            height: 100vh;
+            background-image: url('logo.png');
+            background-repeat: no-repeat;
+            background-position: center;
+            background-size: 60% auto;
+            opacity: 0.06;
+            z-index: -1;
+            pointer-events: none;
         }
-        .hero-header img {
-            width: 130px;
-            height: 130px;
+
+        @media (max-width: 768px) {
+            body::before {
+                background-size: 90% auto;
+            }
+        }
+
+        /* Top Bar & Language Switcher */
+        .top-bar {
+            background-color: var(--primary-color);
+            color: var(--white);
+            padding: 0.75rem 1rem;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            flex-wrap: wrap;
+            gap: 0.5rem;
+        }
+
+        .brand-container {
+            display: flex;
+            align-items: center;
+            gap: 0.75rem;
+        }
+
+        .brand-logo {
+            width: 36px;
+            height: 36px;
             object-fit: cover;
             border-radius: 50%;
+            background: var(--white);
+            border: 1px solid var(--accent-color);
+        }
+
+        .brand-title {
+            font-size: 1.1rem;
+            font-weight: 600;
+            letter-spacing: 0.5px;
+        }
+
+        .language-switcher select {
+            background: var(--white);
+            color: var(--primary-color);
+            border: none;
+            padding: 0.3rem 0.6rem;
+            border-radius: 4px;
+            font-weight: 600;
+            cursor: pointer;
+        }
+
+        /* Header / Hero Section */
+        header {
+            background: linear-gradient(rgba(26, 54, 93, 0.9), rgba(26, 54, 93, 0.9)), url('livingroom1.png') center/cover no-repeat;
+            color: var(--white);
+            text-align: center;
+            padding: 3.5rem 1rem 3rem 1rem;
+        }
+
+        .hero-logo-container {
+            display: flex;
+            justify-content: center;
+            margin-bottom: 1.5rem;
+        }
+
+        .hero-logo {
+            width: 160px;
+            height: 160px;
+            object-fit: cover;
+            border-radius: 50%;
+            border: 4px solid var(--accent-color);
+            box-shadow: 0 0 25px rgba(197, 160, 89, 0.8), 0 0 10px rgba(255, 255, 255, 0.5);
+            animation: glow 3s infinite alternate;
+        }
+
+        @keyframes glow {
+            0% {
+                box-shadow: 0 0 15px rgba(197, 160, 89, 0.6);
+            }
+            100% {
+                box-shadow: 0 0 30px rgba(197, 160, 89, 1), 0 0 15px rgba(255, 255, 255, 0.8);
+            }
+        }
+
+        header h1 {
+            font-size: 2.2rem;
+            margin-bottom: 0.5rem;
+            color: var(--white);
+        }
+
+        header p {
+            font-size: 1.1rem;
+            opacity: 0.95;
+            max-width: 800px;
+            margin: 0 auto;
+        }
+
+        /* Container Layout */
+        .container {
+            max-width: 1100px;
+            margin: 0 auto;
+            padding: 1.5rem 1rem;
+            display: grid;
+            grid-template-columns: 1fr;
+            gap: 1.5rem;
+        }
+
+        @media (min-width: 768px) {
+            .container {
+                grid-template-columns: 2fr 1fr;
+            }
+        }
+
+        /* Cards */
+        .card {
+            background: var(--white);
+            border-radius: 8px;
+            padding: 1.5rem;
+            box-shadow: var(--shadow);
+            margin-bottom: 1.5rem;
+        }
+
+        .card h2 {
+            color: var(--primary-color);
+            font-size: 1.4rem;
+            margin-bottom: 1rem;
+            border-bottom: 2px solid var(--bg-color);
+            padding-bottom: 0.5rem;
+        }
+
+        /* Responsive Photo Grid: 1 per row on mobile, 3 per row on desktop */
+        .album-grid {
+            display: grid;
+            grid-template-columns: 1fr;
+            gap: 1rem;
+        }
+
+        @media (min-width: 768px) {
+            .album-grid {
+                grid-template-columns: repeat(3, 1fr);
+            }
+        }
+
+        .album-item {
+            width: 100%;
+            aspect-ratio: 4/3;
+            border-radius: 6px;
+            overflow: hidden;
+            cursor: pointer;
+            box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+            background: #eee;
+            position: relative;
+        }
+
+        .album-item img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            transition: var(--transition);
             display: block;
         }
-        .hero-header h1 {
-            font-size: 32px;
-            margin: 10px 0 15px 0;
-            color: #ffffff;
-            letter-spacing: 1px;
+
+        .album-item:hover img {
+            transform: scale(1.03);
         }
-        .hero-header p {
-            font-size: 16px;
-            max-width: 750px;
-            margin: 0 auto;
-            line-height: 1.6;
-            color: #e2e8f0;
-        }
-        .container {
-            max-width: 1000px;
-            margin: 0 auto;
-            padding: 0 20px 40px 20px;
-        }
-        h2 {
-            color: #1a365d;
-            border-bottom: 2px solid #e2e8f0;
-            padding-bottom: 10px;
-            margin-top: 40px;
-        }
-        .photo-grid {
-            display: grid;
-            grid-template-columns: repeat(auto-fill, minmax(250px, 1fr));
-            gap: 15px;
-            padding: 15px 0;
-        }
-        .photo-item img {
+
+        /* Arrival Instructions Toggle Button & Box */
+        .arrival-toggle-btn {
+            background-color: var(--primary-color);
+            color: var(--white);
+            border: none;
             width: 100%;
-            height: 180px;
-            object-fit: cover;
+            padding: 1rem;
+            font-size: 1.1rem;
+            font-weight: 600;
             border-radius: 8px;
             cursor: pointer;
-            transition: transform 0.2s ease, box-shadow 0.2s ease;
-            box-shadow: 0 2px 5px rgba(0,0,0,0.1);
-        }
-        .photo-item img:hover {
-            transform: scale(1.02);
-            box-shadow: 0 5px 15px rgba(0,0,0,0.2);
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            box-shadow: var(--shadow);
+            transition: var(--transition);
+            margin-bottom: 1.5rem;
         }
 
-        /* Σημείωση Επικοινωνίας / Κράτησης */
-        .booking-notice {
-            background: linear-gradient(135deg, #2a4365, #1a365d);
-            color: #ffffff;
-            text-align: center;
-            padding: 30px 20px;
-            margin: 40px 0 20px 0;
+        .arrival-toggle-btn:hover {
+            background-color: #2a4a7f;
+        }
+
+        .arrival-content {
+            display: none;
+            background: var(--white);
             border-radius: 8px;
-            box-shadow: 0 4px 10px rgba(0,0,0,0.15);
-        }
-        .booking-notice h3 {
-            margin-top: 0;
-            color: #d4af37;
-            font-size: 24px;
-        }
-        .booking-notice p {
-            font-size: 16px;
-            line-height: 1.6;
-            max-width: 700px;
-            margin: 0 auto;
-            color: #e2e8f0;
-        }
-        .whatsapp-link {
-            display: inline-block;
-            margin-top: 15px;
-            background-color: #25d366;
-            color: #ffffff;
-            padding: 12px 24px;
-            border-radius: 30px;
-            text-decoration: none;
-            font-weight: bold;
-            font-size: 18px;
-            box-shadow: 0 4px 10px rgba(0,0,0,0.2);
-            transition: background-color 0.2s;
-        }
-        .whatsapp-link:hover {
-            background-color: #20ba5a;
+            padding: 1.5rem;
+            box-shadow: var(--shadow);
+            margin-bottom: 1.5rem;
+            border-left: 4px solid var(--accent-color);
         }
 
-        /* Modal Lightbox Overlay */
-        #lightbox-modal {
+        .arrival-content h3 {
+            color: var(--primary-color);
+            margin-bottom: 1rem;
+            font-size: 1.3rem;
+        }
+
+        .arrival-content h4 {
+            color: var(--primary-color);
+            margin-top: 1rem;
+            margin-bottom: 0.5rem;
+            font-size: 1.1rem;
+        }
+
+        .arrival-content p, .arrival-content ul {
+            margin-bottom: 0.75rem;
+            font-size: 0.95rem;
+        }
+
+        .arrival-content ul {
+            list-style-position: inside;
+            padding-left: 0.5rem;
+        }
+
+        .arrival-content li {
+            margin-bottom: 0.4rem;
+        }
+
+        /* Booking / Direct Contact Box */
+        .booking-box {
+            background: var(--white);
+            border-radius: 8px;
+            padding: 1.5rem;
+            box-shadow: var(--shadow);
+            text-align: center;
+            border: 2px solid var(--accent-color);
+        }
+
+        .booking-box h3 {
+            color: var(--primary-color);
+            margin-bottom: 0.75rem;
+        }
+
+        .booking-box p {
+            font-size: 0.95rem;
+            margin-bottom: 1.25rem;
+        }
+
+        .whatsapp-container {
+            display: flex;
+            flex-direction: column;
+            gap: 0.75rem;
+        }
+
+        .whatsapp-btn, .map-btn {
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            gap: 0.75rem;
+            text-decoration: none;
+            padding: 0.75rem 1.5rem;
+            border-radius: 50px;
+            font-weight: 600;
+            width: 100%;
+            transition: var(--transition);
+        }
+
+        .whatsapp-btn {
+            background-color: #25d366;
+            color: var(--white);
+            box-shadow: 0 4px 6px rgba(37, 211, 102, 0.2);
+        }
+
+        .whatsapp-btn:hover {
+            background-color: #20ba5a;
+            transform: translateY(-2px);
+        }
+
+        .map-btn {
+            background-color: var(--primary-color);
+            color: var(--white);
+            box-shadow: 0 4px 6px rgba(26, 54, 93, 0.2);
+            border: 1px solid var(--accent-color);
+        }
+
+        .map-btn:hover {
+            background-color: #2a4a7f;
+            transform: translateY(-2px);
+        }
+
+        .whatsapp-icon-wrapper {
+            width: 28px;
+            height: 28px;
+            border-radius: 50%;
+            overflow: hidden;
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            flex-shrink: 0;
+            background: transparent;
+        }
+
+        .whatsapp-icon-wrapper img {
+            width: 125%;
+            height: 125%;
+            object-fit: cover;
+            object-position: center;
+            display: block;
+        }
+
+        /* Modal for Image Preview / Book Style Viewer */
+        .modal {
             display: none;
             position: fixed;
-            z-index: 9999;
+            z-index: 1000;
             top: 0;
             left: 0;
             width: 100%;
             height: 100%;
             background-color: rgba(0, 0, 0, 0.9);
-            align-items: center;
             justify-content: center;
+            align-items: center;
+            padding: 1rem;
         }
-        #lightbox-modal img {
-            max-width: 90%;
+
+        .modal-content-wrapper {
+            position: relative;
+            max-width: 90vw;
             max-height: 85vh;
-            border-radius: 5px;
-            box-shadow: 0 0 20px rgba(255,255,255,0.2);
+            display: flex;
+            justify-content: center;
+            align-items: center;
         }
-        .lightbox-close {
+
+        .modal img {
+            max-width: 100%;
+            max-height: 85vh;
+            border-radius: 6px;
+            object-fit: contain;
+            box-shadow: 0 5px 15px rgba(0,0,0,0.5);
+        }
+
+        .modal-close {
             position: absolute;
-            top: 20px;
-            right: 30px;
-            color: #fff;
-            font-size: 40px;
+            top: 1.5rem;
+            right: 2rem;
+            color: var(--white);
+            font-size: 2.5rem;
             font-weight: bold;
             cursor: pointer;
+            z-index: 1010;
+            background: rgba(0,0,0,0.4);
+            width: 45px;
+            height: 45px;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            transition: var(--transition);
         }
-        .lightbox-prev, .lightbox-next {
+
+        .modal-close:hover {
+            background: rgba(255,255,255,0.2);
+        }
+
+        .modal-nav {
             position: absolute;
             top: 50%;
             transform: translateY(-50%);
-            color: #fff;
-            font-size: 40px;
-            font-weight: bold;
+            background: rgba(255, 255, 255, 0.2);
+            color: white;
+            border: none;
+            font-size: 2rem;
+            padding: 0.5rem 1rem;
             cursor: pointer;
-            padding: 10px 20px;
-            user-select: none;
-            background: rgba(0,0,0,0.4);
-            border-radius: 4px;
-            transition: background 0.2s;
+            border-radius: 50%;
+            transition: var(--transition);
+            z-index: 1010;
+            width: 55px;
+            height: 55px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
         }
-        .lightbox-prev:hover, .lightbox-next:hover {
-            background: rgba(255,255,255,0.3);
+
+        .modal-nav:hover {
+            background: rgba(255, 255, 255, 0.4);
         }
-        .lightbox-prev { left: 20px; }
-        .lightbox-next { right: 20px; }
-        .lightbox-caption {
-            position: absolute;
-            bottom: 20px;
-            color: #fff;
-            font-size: 16px;
+
+        .modal-prev {
+            left: 20px;
+        }
+
+        .modal-next {
+            right: 20px;
+        }
+
+        @media (max-width: 768px) {
+            .modal-nav {
+                width: 40px;
+                height: 40px;
+                font-size: 1.5rem;
+                padding: 0.2rem;
+            }
+            .modal-prev { left: 5px; }
+            .modal-next { right: 5px; }
+        }
+
+        /* Footer */
+        footer {
+            text-align: center;
+            padding: 2rem 1rem;
+            background-color: var(--primary-color);
+            color: var(--white);
+            font-size: 0.9rem;
+            margin-top: 2rem;
         }
     </style>
 </head>
 <body>
 
-<!-- Εντυπωσιακό Μπλε Φόντο, Λογότυπο σε Χρυσό Κύκλο και Περιγραφή Λιμανιού/Φεριμπότ -->
-<div class="hero-header">
-    <div class="logo-container">
-        <img src="logo.png" alt="Anastasia's Apartment Logo">
-    </div>
-    <h1>Anastasia's Apartment</h1>
-    <p>Καλώς ορίσατε στο κατάλυμά μας. Βρίσκεται σε εξαιρετικά προνομιακή τοποθεσία, πολύ κοντά στο λιμάνι και τα φεριμπότ, προσφέροντας άνετη πρόσβαση και φιλοξενία. Κάντε κλικ σε οποιαδήποτε φωτογραφία για να ανοίξει σε πλήρη προβολή και να την ξεφυλλίσετε.</p>
-</div>
-
-<div class="container">
-    <!-- Ενότητα: Είσοδος -->
-    <h2>Κεντρική Είσοδος & Εξωτερικός Χώρος</h2>
-    <div class="photo-grid">
-        <div class="photo-item"><img src="entrance (1).jpg" alt="Είσοδος 1" class="gallery-img"></div>
-        <div class="photo-item"><img src="entrance (2).jpg" alt="Είσοδος 2" class="gallery-img"></div>
-        <div class="photo-item"><img src="entrance (3).jpg" alt="Είσοδος 3" class="gallery-img"></div>
-        <div class="photo-item"><img src="entrance (4).jpg" alt="Είσοδος 4" class="gallery-img"></div>
-        <div class="photo-item"><img src="entrance (5).jpg" alt="Είσοδος 5" class="gallery-img"></div>
+    <!-- Top Bar & Language Selector -->
+    <div class="top-bar">
+        <div class="brand-container">
+            <img src="logo.png" alt="Logo" class="brand-logo" onerror="this.style.display='none'">
+            <div class="brand-title">Anastasia's Apartment - Λαύριο</div>
+        </div>
+        <div class="language-switcher">
+            <select id="langSelect" onchange="changeLanguage(this.value)">
+                <option value="el">Ελληνικά</option>
+                <option value="en">English</option>
+                <option value="fr">Français</option>
+                <option value="de">Deutsch</option>
+                <option value="it">Italiano</option>
+                <option value="es">Español</option>
+            </select>
+        </div>
     </div>
 
-    <!-- Ενότητα: Σαλόνι & Hall -->
-    <h2>Σαλόνι & Hall</h2>
-    <div class="photo-grid">
-        <div class="photo-item"><img src="livingroom1.png" alt="Σαλόνι 1" class="gallery-img"></div>
-        <div class="photo-item"><img src="livingroom2.png" alt="Σαλόνι 2" class="gallery-img"></div>
-        <div class="photo-item"><img src="livingroom3.png" alt="Σαλόνι 3" class="gallery-img"></div>
-        <div class="photo-item"><img src="hall.jpg" alt="Hall" class="gallery-img"></div>
+    <!-- Header / Hero with Glowing Center Logo -->
+    <header>
+        <div class="hero-logo-container">
+            <img src="logo.png" alt="Anastasia's Apartment Logo" class="hero-logo">
+        </div>
+        <h1 id="headerTitle">Anastasia's Apartment</h1>
+        <p id="headerSub">Λαύριο • Πολυτελής Φιλοξενία. Βρισκόμαστε στο κέντρο της πόλης και στο λιμάνι του Λαυρίου, σε ιδανικό σημείο για επαγγελματίες, στελέχη, εργάτες του λιμανιού, ακαδημαϊκούς και καθηγητές του πανεπιστημίου, καθώς και επισκέπτες που ταξιδεύουν με yachts, ferry boats και κρουαζιερόπλοια.</p>
+    </header>
+
+    <!-- Main Content Layout -->
+    <div class="container">
+        
+        <!-- Left Column: Details, Photo Grid & Arrival Instructions -->
+        <main>
+            <!-- Photo Grid (3 per row on PC, 1 per row on Mobile) -->
+            <section class="card">
+                <h2 id="galleryHeading">Άλμπουμ Φωτογραφιών Καταλύματος</h2>
+                <div class="album-grid" id="albumGrid">
+                    <div class="album-item" onclick="openModal(0)"><img src="livingroom1.png" alt="Σαλόνι 1"></div>
+                    <div class="album-item" onclick="openModal(1)"><img src="livingroom2.png" alt="Σαλόνι 2"></div>
+                    <div class="album-item" onclick="openModal(2)"><img src="livingroom3.png" alt="Σαλόνι 3"></div>
+                    <div class="album-item" onclick="openModal(3)"><img src="bedroom1 (1).jpeg" alt="Υπνοδωμάτιο 1"></div>
+                    <div class="album-item" onclick="openModal(4)"><img src="bedroom2 (2).png" alt="Υπνοδωμάτιο 2 (Με 2 μονά κρεβάτια)"></div>
+                    <div class="album-item" onclick="openModal(5)"><img src="bedroom2 (1).png" alt="Υπνοδωμάτιο 2α"></div>
+                    <div class="album-item" onclick="openModal(6)"><img src="bedroom2 (3).png" alt="Υπνοδωμάτιο 2γ"></div>
+                    <div class="album-item" onclick="openModal(7)"><img src="bathroom (1).jpg" alt="Μπάνιο 1"></div>
+                    <div class="album-item" onclick="openModal(8)"><img src="bathroom (2).jpg" alt="Μπάνιο 2"></div>
+                    <div class="album-item" onclick="openModal(9)"><img src="bathroom (3).jpg" alt="Μπάνιο 3"></div>
+                    <div class="album-item" onclick="openModal(10)"><img src="kitchen1 (1).jpg" alt="Κουζίνα 1"></div>
+                    <div class="album-item" onclick="openModal(11)"><img src="kitchen1 (2).jpg" alt="Κουζίνα 2"></div>
+                    <div class="album-item" onclick="openModal(12)"><img src="kitchen1 (3).jpg" alt="Κουζίνα 3"></div>
+                    <div class="album-item" onclick="openModal(13)"><img src="kitchen1 (4).jpg" alt="Κουζίνα 4"></div>
+                    <div class="album-item" onclick="openModal(14)"><img src="kitchen1 (5).jpg" alt="Κουζίνα 5"></div>
+                    <div class="album-item" onclick="openModal(15)"><img src="hall.jpg" alt="Hall"></div>
+                    <div class="album-item" onclick="openModal(16)"><img src="Τραπεζαρία.jpg" alt="Τραπεζαρία"></div>
+                    <div class="album-item" onclick="openModal(17)"><img src="entrance (1).jpg" alt="Είσοδος - Κλειδοθήκη 1"></div>
+                    <div class="album-item" onclick="openModal(18)"><img src="entrance (2).jpg" alt="Είσοδος - Κλειδοθήκη 2"></div>
+                    <div class="album-item" onclick="openModal(19)"><img src="entrance (3).jpg" alt="Είσοδος - Κλειδοθήκη 3"></div>
+                    <div class="album-item" onclick="openModal(20)"><img src="entrance (4).jpg" alt="Είσοδος - Κλειδοθήκη 4"></div>
+                    <div class="album-item" onclick="openModal(21)"><img src="entrance (5).jpg" alt="Είσοδος - Κλειδοθήκη 5"></div>
+                </div>
+            </section>
+
+            <!-- Arrival Instructions Toggle Button -->
+            <button class="arrival-toggle-btn" onclick="toggleArrivalInstructions()">
+                <span id="arrivalBtnText"><span style="letter-spacing: -1px; margin-right: 6px;">ℹ</span> Οδηγίες Άφιξης & Διαμονής</span>
+                <span>▼</span>
+            </button>
+
+            <!-- Arrival Instructions Content Box -->
+            <div id="arrivalContentBox" class="arrival-content">
+                <h3 id="arrTitle">Καλώς Ορίσατε!</h3>
+                <p id="arrWelcome">Σας ευχαριστούμε θερμά που επιλέξατε το κατάλυμά μας για τη διαμονή σας. Χαιρόμαστε ιδιαίτερα που σας υποδεχόμαστε στο διαμέρισμά μας.</p>
+                <p id="arrIntro">Παρακάτω θα βρείτε σημαντικές πληροφορίες για την ομαλή άφιξη και διαμονή σας:</p>
+                
+                <h4 id="arrScheduleTitle">Χρονοδιάγραμμα Διαμονής</h4>
+                <p id="arrScheduleText"><strong>Ώρα Άφιξης (Check-in):</strong> Από τις 15:00<br><strong>Ώρα Αναχώρησης (Check-out):</strong> Το αργότερο έως τις 11:00 π.μ.</p>
+
+                <h4 id="arrKeysTitle">Διαδικασία Άφιξης & Κλειδιών</h4>
+                <p id="arrKeysText">
+                    <strong>Παραλαβή Κλειδιών:</strong> Τα κλειδιά βρίσκονται στο ειδικό κουτί ασφαλείας (lockbox) ακριβώς δεξιά από την κεντρική είσοδο του κτιρίου, όπως φαίνεται στις σχετικές φωτογραφίες που σας έχουμε αποστείλει.<br>
+                    <strong>Κωδικός Lockbox:</strong> Ο 4ψήφιος κωδικός πρόσβασης θα σας αποσταλεί την ημέρα της άφιξής σας.<br>
+                    <strong>Χρήση Κουτιού:</strong> Τραβήξτε προς τα κάτω το προστατευτικό κάλυμμα, πληκτρολογήστε τον κωδικό και γυρίστε τον μηχανισμό δεξιόστροφα. Εάν πληκτρολογήσετε λάθος κωδικό, πιέστε το πλήκτρο "C" για επαναφορά και δοκιμάστε ξανά.<br>
+                    <strong>Περιεχόμενο Θυρίδας:</strong> Παρακαλείσθε να παραλάβετε τα δύο κλειδιά: ένα για την κεντρική είσοδο του κτιρίου και ένα για το διαμέρισμα στον 4ο όροφο.
+                </p>
+
+                <h4 id="arrAccessTitle">Πρόσβαση στο Διαμέρισμα</h4>
+                <p id="arrAccessText">
+                    Μετά το άνοιγμα της κεντρικής εισόδου, στην αριστερή πλευρά του τοίχου θα βρείτε τον διακόπτη φωτισμού της σκάλας. Ακριβώς μπροστά και δεξιά βρίσκεται ο ανελκυστήρας.<br>
+                    Χρησιμοποιήστε το ασανσέρ για να ανεβείτε στον 4ο όροφο. Η είσοδος του διαμερίσματός μας βρίσκεται ακριβώς μπροστά σας.
+                </p>
+
+                <h4 id="arrAmenitiesTitle">Παροχές Διαμερίσματος</h4>
+                <p id="arrAmenitiesText">
+                    <strong>Ζεστό Νερό:</strong> Για να ενεργοποιήσετε τον θερμοσίφωνα, ακολουθήστε τις οδηγίες που αναγράφονται στον πίνακα ελέγχου.<br>
+                    <strong>Σύνδεση Wi-Fi:</strong> Λεπτομερείς οδηγίες σύνδεσης στο ασύρματο δίκτυο θα βρείτε στο χολ του διαμερίσματος.
+                </p>
+
+                <h4 id="arrDepartureTitle">Επιπλέον Πληροφορίες & Αναχώρηση</h4>
+                <p id="arrDepartureText">
+                    <strong>Ταυτοποίηση:</strong> Παρακαλούμε να μας αποστείλετε τον αριθμό του διαβατηρίου ή της ταυτότητάς σας.<br>
+                    <strong>Ώρα Αναχώρησης:</strong> Παρακαλούμε να μας ενημερώσετε εκ των προτέρων για την ακριβή ώρα αναχώρησής σας.<br>
+                    <strong>Κατά την Αναχώρηση:</strong> Παρακαλούμε να σβήσετε όλα τα φώτα, να αποσυνδέσετε τις ηλεκτρικές συσκευές και να τοποθετήσετε ξανά τα κλειδιά στη θυρίδα ασφαλείας από όπου τα παραλάβατε.
+                </p>
+
+                <p id="arrOutro" style="margin-top: 1rem;">Εάν χρειάζεστε οποιαδήποτε διευκρίνιση ή επιπλέον πληροφορία, μη διστάσετε να επικοινωνήσετε μαζί μας.<br><strong>Με εκτίμηση, Ιωάννης.</strong></p>
+            </div>
+        </main>
+
+        <!-- Right Column: Booking & Direct Contact -->
+        <aside>
+            <div class="booking-box">
+                <h3 id="contactHeading">Απευθείας Κράτηση</h3>
+                <p id="contactText">Κάντε την κράτησή σας άμεσα μέσω WhatsApp και επωφεληθείτε από την προνομιακή τιμή, εξασφαλίζοντας την καλύτερη δυνατή χρέωση από κάθε άλλη πλατφόρμα. Ενημερώστε μας με μήνυμα για τις ημερομηνίες που σας ενδιαφέρουν και θα λάβετε απάντηση για τη διαθεσιμότητα το αργότερο σε 24 ώρες.</p>
+                <div class="whatsapp-container">
+                    <a href="https://wa.me/306940636906" class="whatsapp-btn" id="whatsappBtn" target="_blank">
+                        <span class="whatsapp-icon-wrapper">
+                            <img src="whatsapp-icon.png" alt="WhatsApp">
+                        </span>
+                        <span>WhatsApp Chat</span>
+                    </a>
+                    <!-- Google Maps Button -->
+                    <a href="https://share.google/7blipYXF3Od9vyF4E" class="map-btn" id="mapBtn" target="_blank">
+                        <span style="font-size: 1.1rem;">❖</span>
+                        <span id="mapBtnText">Οδηγίες προς Διαμέρισμα</span>
+                    </a>
+                </div>
+            </div>
+        </aside>
+
     </div>
 
-    <!-- Ενότητα: Κουζίνα -->
-    <h2>Κουζίνα</h2>
-    <div class="photo-grid">
-        <div class="photo-item"><img src="kitchen1 (1).jpg" alt="Κουζίνα 1" class="gallery-img"></div>
-        <div class="photo-item"><img src="kitchen1 (2).jpg" alt="Κουζίνα 2" class="gallery-img"></div>
-        <div class="photo-item"><img src="kitchen1 (3).jpg" alt="Κουζίνα 3" class="gallery-img"></div>
-        <div class="photo-item"><img src="kitchen1 (4).jpg" alt="Κουζίνα 4" class="gallery-img"></div>
-        <div class="photo-item"><img src="kitchen1 (5).jpg" alt="Κουζίνα 5" class="gallery-img"></div>
+    <!-- Image Modal Viewer / Carousel -->
+    <div id="imageModal" class="modal" onclick="handleModalClick(event)">
+        <span class="modal-close" onclick="closeModal()">&times;</span>
+        <button class="modal-nav modal-prev" onclick="event.stopPropagation(); changeImage(-1)">&#10094;</button>
+        <div class="modal-content-wrapper">
+            <img id="modalImg" src="" alt="Μεγέθυνση Φωτογραφίας">
+        </div>
+        <button class="modal-nav modal-next" onclick="event.stopPropagation(); changeImage(1)">&#10095;</button>
     </div>
 
-    <!-- Ενότητα: Υπνοδωμάτια -->
-    <h2>Υπνοδωμάτια</h2>
-    <div class="photo-grid">
-        <div class="photo-item"><img src="bedroom1 (1).jpeg" alt="Υπνοδωμάτιο 1 - 1" class="gallery-img"></div>
-        <div class="photo-item"><img src="bedroom1 (1).png" alt="Υπνοδωμάτιο 1 - 2" class="gallery-img"></div>
-        <div class="photo-item"><img src="bedroom2 (1).png" alt="Υπνοδωμάτιο 2 - 1" class="gallery-img"></div>
-        <div class="photo-item"><img src="bedroom2 (2).png" alt="Υπνοδωμάτιο 2 - 2" class="gallery-img"></div>
-        <div class="photo-item"><img src="bedroom2 (3).png" alt="Υπνοδωμάτιο 2 - 3" class="gallery-img"></div>
-    </div>
+    <!-- Footer -->
+    <footer>
+        <p id="footerText">&copy; 2026 Anastasia's Apartment. Με επιφύλαξη παντός δικαιώματος.</p>
+    </footer>
 
-    <!-- Ενότητα: Μπάνιο -->
-    <h2>Μπάνιο</h2>
-    <div class="photo-grid">
-        <div class="photo-item"><img src="bathroom (1).jpg" alt="Μπάνιο 1" class="gallery-img"></div>
-        <div class="photo-item"><img src="bathroom (2).jpg" alt="Μπάνιο 2" class="gallery-img"></div>
-        <div class="photo-item"><img src="bathroom (3).jpg" alt="Μπάνιο 3" class="gallery-img"></div>
-    </div>
+    <!-- Multilingual & Interactive Script -->
+    <script>
+        function toggleArrivalInstructions() {
+            const box = document.getElementById('arrivalContentBox');
+            if (box.style.display === 'block') {
+                box.style.display = 'none';
+            } else {
+                box.style.display = 'block';
+            }
+        }
 
-    <!-- Σημείωση για Απευθείας Κράτηση -->
-    <div class="booking-notice">
-        <h3>Απευθείας Κράτηση</h3>
-        <p>Για να πραγματοποιήσετε απευθείας κράτηση στο κατάλυμά μας, παρακαλούμε να μας στείλετε μήνυμα στο WhatsApp. Θα χαρούμε να σας εξυπηρετήσουμε και θα απαντήσουμε το αργότερο εντός 24 ωρών.</p>
-        <a href="https://wa.me/306940636906" class="whatsapp-link" target="_blank">💬 WhatsApp: 6940 636 906</a>
-    </div>
-</div>
+        const images = [
+            "livingroom1.png", "livingroom2.png", "livingroom3.png",
+            "bedroom1 (1).jpeg", "bedroom2 (2).png", "bedroom2 (1).png", "bedroom2 (3).png",
+            "bathroom (1).jpg", "bathroom (2).jpg", "bathroom (3).jpg",
+            "kitchen1 (1).jpg", "kitchen1 (2).jpg", "kitchen1 (3).jpg", "kitchen1 (4).jpg", "kitchen1 (5).jpg",
+            "hall.jpg", "Τραπεζαρία.jpg",
+            "entrance (1).jpg", "entrance (2).jpg", "entrance (3).jpg", "entrance (4).jpg", "entrance (5).jpg"
+        ];
+        let currentIndex = 0;
 
-<!-- Lightbox Modal HTML -->
-<div id="lightbox-modal">
-    <span class="lightbox-close">&times;</span>
-    <span class="lightbox-prev">&#10094;</span>
-    <span class="lightbox-next">&#10095;</span>
-    <img id="lightbox-img" src="" alt="">
-    <div id="lightbox-caption" class="lightbox-caption"></div>
-</div>
-
-<!-- JavaScript για τη λειτουργία gallery -->
-<script>
-    const images = document.querySelectorAll('.gallery-img');
-    const modal = document.getElementById('lightbox-modal');
-    const modalImg = document.getElementById('lightbox-img');
-    const captionText = document.getElementById('lightbox-caption');
-    const closeBtn = document.querySelector('.lightbox-close');
-    const prevBtn = document.querySelector('.lightbox-prev');
-    const nextBtn = document.querySelector('.lightbox-next');
-
-    let currentIndex = 0;
-    const imageArray = Array.from(images);
-
-    function showImage(index) {
-        if (index < 0) {
-            currentIndex = imageArray.length - 1;
-        } else if (index >= imageArray.length) {
-            currentIndex = 0;
-        } else {
+        function openModal(index) {
             currentIndex = index;
-        }
-        modalImg.src = imageArray[currentIndex].src;
-        captionText.innerHTML = imageArray[currentIndex].alt;
-    }
-
-    imageArray.forEach((img, index) => {
-        img.addEventListener('click', () => {
+            const modal = document.getElementById('imageModal');
+            const modalImg = document.getElementById('modalImg');
             modal.style.display = 'flex';
-            showImage(index);
+            modalImg.src = images[currentIndex];
+        }
+
+        function closeModal() {
+            document.getElementById('imageModal').style.display = 'none';
+        }
+
+        function changeImage(direction) {
+            currentIndex += direction;
+            if (currentIndex < 0) {
+                currentIndex = images.length - 1;
+            } else if (currentIndex >= images.length) {
+                currentIndex = 0;
+            }
+            document.getElementById('modalImg').src = images[currentIndex];
+        }
+
+        function handleModalClick(event) {
+            if (event.target.id === 'imageModal') {
+                closeModal();
+            }
+        }
+
+        document.addEventListener('keydown', function(event) {
+            const modal = document.getElementById('imageModal');
+            if (modal.style.display === 'flex') {
+                if (event.key === 'ArrowLeft') {
+                    changeImage(-1);
+                } else if (event.key === 'ArrowRight') {
+                    changeImage(1);
+                } else if (event.key === 'Escape') {
+                    closeModal();
+                }
+            }
         });
-    });
 
-    closeBtn.addEventListener('click', () => {
-        modal.style.display = 'none';
-    });
+        const translations = {
+            el: {
+                headerTitle: "Anastasia's Apartment",
+                headerSub: "Λαύριο • Πολυτελής Φιλοξενία. Βρισκόμαστε στο κέντρο της πόλης και στο λιμάνι του Λαυρίου, σε ιδανικό σημείο για επαγγελματίες, στελέχη, εργάτες του λιμανιού, ακαδημαϊκούς και καθηγητές του πανεπιστημίου, καθώς και επισκέπτες που ταξιδεύουν με yachts, ferry boats και κρουαζιερόπλοια.",
+                galleryHeading: "Άλμπουμ Φωτογραφιών Καταλύματος",
+                arrivalBtnText: '<span style="letter-spacing: -1px; margin-right: 6px;">ℹ</span> Οδηγίες Άφιξης & Διαμονής',
+                arrTitle: "Καλώς Ορίσατε!",
+                arrWelcome: "Σας ευχαριστούμε θερμά που επιλέξατε το κατάλυμά μας για τη διαμονή σας. Χαιρόμαστε ιδιαίτερα που σας υποδεχόμαστε στο διαμέρισμά μας.",
+                arrIntro: "Παρακάτω θα βρείτε σημαντικές πληροφορίες για την ομαλή άφιξη και διαμονή σας:",
+                arrScheduleTitle: "Χρονοδιάγραμμα Διαμονής",
+                arrScheduleText: "<strong>Ώρα Άφιξης (Check-in):</strong> Από τις 15:00<br><strong>Ώρα Αναχώρησης (Check-out):</strong> Το αργότερο έως τις 11:00 π.μ.",
+                arrKeysTitle: "Διαδικασία Άφιξης & Κλειδιών",
+                arrKeysText: `
+                    <strong>Παραλαβή Κλειδιών:</strong> Τα κλειδιά βρίσκονται στο ειδικό κουτί ασφαλείας (lockbox) ακριβώς δεξιά από την κεντρική είσοδο του κτιρίου, όπως φαίνεται στις σχετικές φωτογραφίες που σας έχουμε αποστείλει.<br>
+                    <strong>Κωδικός Lockbox:</strong> Ο 4ψήφιος κωδικός πρόσβασης θα σας αποσταλεί την ημέρα της άφιξής σας.<br>
+                    <strong>Χρήση Κουτιού:</strong> Τραβήξτε προς τα κάτω το προστατευτικό κάλυμμα, πληκτρολογήστε τον κωδικό και γυρίστε τον μηχανισμό δεξιόστροφα. Εάν πληκτρολογήσετε λάθος κωδικό, πιέστε το πλήκτρο "C" για επαναφορά και δοκιμάστε ξανά.<br>
+                    <strong>Περιεχόμενο Θυρίδας:</strong> Παρακαλείσθε να παραλάβετε τα δύο κλειδιά: ένα για την κεντρική είσοδο του κτιρίου και ένα για το διαμέρισμα στον 4ο όροφο.
+                `,
+                arrAccessTitle: "Πρόσβαση στο Διαμέρισμα",
+                arrAccessText: `
+                    Μετά το άνοιγμα της κεντρικής εισόδου, στην αριστερή πλευρά του τοίχου θα βρείτε τον διακόπτη φωτισμού της σκάλας. Ακριβώς μπροστά και δεξιά βρίσκεται ο ανελκυστήρας.<br>
+                    Χρησιμοποιήστε το ασανσέρ για να ανεβείτε στον 4ο όροφο. Η είσοδος του διαμερίσματός μας βρίσκεται ακριβώς μπροστά σας.
+                `,
+                arrAmenitiesTitle: "Παροχές Διαμερίσματος",
+                arrAmenitiesText: `
+                    <strong>Ζεστό Νερό:</strong> Για να ενεργοποιήσετε τον θερμοσίφωνα, ακολουθήστε τις οδηγίες που αναγράφονται στον πίνακα ελέγχου.<br>
+                    <strong>Σύνδεση Wi-Fi:</strong> Λεπτομερείς οδηγίες σύνδεσης στο ασύρματο δίκτυο θα βρείτε στο χολ του διαμερίσματος.
+                `,
+                arrDepartureTitle: "Επιπλέον Πληροφορίες & Αναχώρηση",
+                arrDepartureText: `
+                    <strong>Ταυτοποίηση:</strong> Παρακαλούμε να μας αποστείλετε τον αριθμό του διαβατηρίου ή της ταυτότητάς σας.<br>
+                    <strong>Ώρα Αναχώρησης:</strong> Παρακαλούμε να μας ενημερώσετε εκ των προτέρων για την ακριβή ώρα αναχώρησής σας.<br>
+                    <strong>Κατά την Αναχώρηση:</strong> Παρακαλούμε να σβήσετε όλα τα φώτα, να αποσυνδέσετε τις ηλεκτρικές συσκευές και να τοποθετήσετε ξανά τα κλειδιά στη θυρίδα ασφαλείας από όπου τα παραλάβατε.
+                `,
+                arrOutro: `Εάν χρειάζεστε οποιαδήποτε διευκρίνιση ή επιπλέον πληροφορία, μη διστάσετε να επικοινωνήσετε μαζί μας.<br><strong>Με εκτίμηση, Ιωάννης.</strong>`,
+                contactHeading: "Απευθείας Κράτηση & Τοποθεσία",
+                contactText: "Κάντε την κράτησή σας άμεσα μέσω WhatsApp και επωφεληθείτε από την προνομιακή τιμή. Δείτε επίσης εύκολα τη διαδρομή προς το διαμέρισμά μας (Χαραλάμπου Ψαρρού 21 - 4ος Όροφος)[cite: 1] μέσω Google Maps.",
+                whatsappBtn: `
+                    <span class="whatsapp-icon-wrapper">
+                        <img src="whatsapp-icon.png" alt="WhatsApp">
+                    </span>
+                    <span>WhatsApp Chat</span>
+                `,
+                mapBtnText: "Οδηγίες προς Διαμέρισμα",
+                footerText: "&copy; 2026 Anastasia's Apartment. Με επιφύλαξη παντός δικαιώματος."
+            },
+            en: {
+                headerTitle: "Anastasia's Apartment",
+                headerSub: "Lavrio • Luxury Hospitality. Located in the city center and the port of Lavrio, an ideal spot for professionals, executives, port workers, academics and university professors, as well as visitors traveling by yachts, ferry boats, and cruise ships.",
+                galleryHeading: "Property Photo Album",
+                arrivalBtnText: '<span style="letter-spacing: -1px; margin-right: 6px;">ℹ</span> Arrival & Stay Instructions',
+                arrTitle: "Welcome!",
+                arrWelcome: "Thank you very much for choosing our accommodation for your stay. We are delighted to welcome you to our apartment.",
+                arrIntro: "Below you will find important information for a smooth arrival and stay:",
+                arrScheduleTitle: "Stay Schedule",
+                arrScheduleText: "<strong>Check-in Time:</strong> From 15:00<br><strong>Check-out Time:</strong> By 11:00 AM at the latest",
+                arrKeysTitle: "Arrival & Keys Procedure",
+                arrKeysText: `
+                    <strong>Key Collection:</strong> The keys are located in the lockbox situated right of the main building entrance, as shown in the photos sent to you.<br>
+                    <strong>Lockbox Code:</strong> The 4-digit code will be sent to you on your arrival day.<br>
+                    <strong>Using the Box:</strong> Pull down the protective cover, enter the code, and turn the mechanism clockwise. If you enter an incorrect code, press the "C" key to reset and try again.<br>
+                    <strong>Box Contents:</strong> Please collect the two keys: one for the main building entrance and one for the apartment on the 4th floor.
+                `,
+                arrAccessTitle: "Apartment Access",
+                arrAccessText: `
+                    After opening the main entrance, you will find the staircase light switch on the left wall. Directly ahead and to the right is the elevator.<br>
+                    Take the elevator to the 4th floor. The entrance to our apartment is directly in front of you.
+                `,
+                arrAmenitiesTitle: "Apartment Amenities",
+                arrAmenitiesText: `
+                    <strong>Hot Water:</strong> To activate the water heater, follow the instructions on the control panel.<br>
+                    <strong>Wi-Fi Connection:</strong> Detailed instructions for connecting to the wireless network can be found in the apartment hallway.
+                `,
+                arrDepartureTitle: "Additional Information & Departure",
+                arrDepartureText: `
+                    <strong>Identification:</strong> Please send us your passport or ID number.<br>
+                    <strong>Departure Time:</strong> Please inform us in advance of your exact departure time.<br>
+                    <strong>Upon Departure:</strong> Please turn off all lights, unplug electrical appliances, and return the keys to the secure lockbox where you found them.
+                `,
+                arrOutro: `If you need any clarification or additional information, please feel free to contact us.<br><strong>Sincerely, Ioannis.</strong>`,
+                contactHeading: "Direct Booking & Location",
+                contactText: "Book your stay directly via WhatsApp to benefit from a preferential rate. Easily check the directions to our apartment (Charalampou Psarrou 21 - 4th Floor)[cite: 1] via Google Maps.",
+                whatsappBtn: `
+                    <span class="whatsapp-icon-wrapper">
+                        <img src="whatsapp-icon.png" alt="WhatsApp">
+                    </span>
+                    <span>WhatsApp Chat</span>
+                `,
+                mapBtnText: "Apartment Directions",
+                footerText: "&copy; 2026 Anastasia's Apartment. All rights reserved."
+            },
+            fr: {
+                headerTitle: "Anastasia's Apartment",
+                headerSub: "Lavrio • Hospitalité de Luxe. Situé au centre-ville et au port de Lavrio, un emplacement idéal pour les professionnels, cadres, travailleurs portuaires, universitaires et visiteurs en yacht, ferry ou croisière.",
+                galleryHeading: "Album Photos",
+                arrivalBtnText: '<span style="letter-spacing: -1px; margin-right: 6px;">ℹ</span> Instructions d\'Arrivée & de Séjour',
+                arrTitle: "Bienvenue !",
+                arrWelcome: "Nous vous remercions chaleureusement d'avoir choisi notre hébergement. Nous sommes ravis de vous accueillir dans notre appartement.",
+                arrIntro: "Vous trouverez ci-dessous des informations importantes pour un séjour et une arrivée sans encombre :",
+                arrScheduleTitle: "Horaires de Séjour",
+                arrScheduleText: "<strong>Heure d'arrivée (Check-in) :</strong> À partir de 15h00<br><strong>Heure de départ (Check-out) :</strong> Au plus tard à 11h00",
+                arrKeysTitle: "Procédure d'Arrivée & Clés",
+                arrKeysText: `
+                    <strong>Retrait des Clés :</strong> Les clés se trouvent dans la boîte à clés sécurisée (lockbox) située à droite de l'entrée principale, comme indiqué sur les photos.<br>
+                    <strong>Code de la Boîte :</strong> Le code à 4 chiffres vous sera envoyé le jour de votre arrivée.<br>
+                    <strong>Utilisation :</strong> Tirez le couvercle de protection vers le bas, entrez le code et tournez le mécanisme dans le sens des aiguilles d'une montre.<br>
+                    <strong>Contenu :</strong> Veuillez récupérer les deux clés : une pour l'entrée principale et une pour l'appartement au 4ème étage.
+                `,
+                arrAccessTitle: "Accès à l'Appartement",
+                arrAccessText: `
+                    Après avoir ouvert l'entrée principale, l'interrupteur d'éclairage des escaliers se trouve sur le mur de gauche. L'ascenseur est juste en face à droite.<br>
+                    Montez au 4ème étage. L'entrée de l'appartement est juste devant vous.
+                `,
+                arrAmenitiesTitle: "Équipements",
+                arrAmenitiesText: `
+                    <strong>Eau Chaude :</strong> Pour activer le chauffe-eau, suivez les instructions indiquées sur le panneau de commande.<br>
+                    <strong>Wi-Fi :</strong> Les instructions de connexion se trouvent dans le couloir de l'appartement.
+                `,
+                arrDepartureTitle: "Informations Complémentaires & Départ",
+                arrDepartureText: `
+                    <strong>Identification :</strong> Veuillez nous envoyer votre numéro de passeport ou de carte d'identité.<br>
+                    <strong>Heure de Départ :</strong> Veuillez nous informer à l'avance de votre heure exacte de départ.<br>
+                    <strong>Au Départ :</strong> Veuillez éteindre toutes les lumières, débrancher les appareils électriques et remettre les clés dans la boîte sécurisée.
+                `,
+                arrOutro: `Si vous avez besoin de précisions, n'hésitez pas à nous contacter.<br><strong>Cordialement, Ioannis.</strong>`,
+                contactHeading: "Réservation & Localisation",
+                contactText: "Réservez directement via WhatsApp. Retrouvez également l'itinéraire vers notre appartement (Charalampou Psarrou 21 - 4e Étage)[cite: 1] sur Google Maps.",
+                whatsappBtn: `
+                    <span class="whatsapp-icon-wrapper">
+                        <img src="whatsapp-icon.png" alt="WhatsApp">
+                    </span>
+                    <span>WhatsApp Chat</span>
+                `,
+                mapBtnText: "Itinéraire vers l'appartement",
+                footerText: "&copy; 2026 Anastasia's Apartment. Tous droits réservés."
+            },
+            de: {
+                headerTitle: "Anastasia's Apartment",
+                headerSub: "Lavrio • Luxus-Gastfreundschaft. Im Stadtzentrum und am Hafen von Lavrio gelegen, ideal für Geschäftsreisende, Führungskräfte, Hafenarbeiter, Akademiker und Besucher.",
+                galleryHeading: "Fotoalbum",
+                arrivalBtnText: '<span style="letter-spacing: -1px; margin-right: 6px;">ℹ</span> Anreise- & Aufenthaltsanweisungen',
+                arrTitle: "Herzlich Willkommen!",
+                arrWelcome: "Vielen Dank, dass Sie sich für unsere Unterkunft entschieden haben. Wir freuen uns sehr, Sie in unserem Apartment begrüßen zu dürfen.",
+                arrIntro: "Unten finden Sie wichtige Informationen für eine reibungslose Anreise und Ihren Aufenthalt:",
+                arrScheduleTitle: "Aufenthaltszeiten",
+                arrScheduleText: "<strong>Check-in Zeit:</strong> Ab 15:00 Uhr<br><strong>Check-out Zeit:</strong> Spätestens bis 11:00 Uhr",
+                arrKeysTitle: "Anreise- & Schlüsselverfahren",
+                arrKeysText: `
+                    <strong>Schlüsselübergabe:</strong> Die Schlüssel befinden sich in der Schlüsselbox rechts vom Haupteingang, wie auf den Fotos gezeigt.<br>
+                    <strong>Box-Code:</strong> Der 4-stellige Code wird Ihnen am Anreisetag zugesendet.<br>
+                    <strong>Bedienung:</strong> Schutzkappe nach unten ziehen, Code eingeben und den Mechanismus im Uhrzeigersinn drehen.<br>
+                    <strong>Inhalt:</strong> Bitte entnehmen Sie die zwei Schlüssel: einen für den Haupteingang und einen für das Apartment im 4. Stock.
+                `,
+                arrAccessTitle: "Zugang zum Apartment",
+                arrAccessText: `
+                    Nach dem Öffnen des Haupteingangs befindet sich der Lichtschalter für die Treppe an der linken Wand. Direkt vorne rechts ist der Aufzug.<br>
+                    Fahren Sie in den 4. Stock. Das Eingang unseres Apartments befindet sich direkt vor Ihnen.
+                `,
+                arrAmenitiesTitle: "Ausstattung",
+                arrAmenitiesText: `
+                    <strong>Warmwasser:</strong> Befolgen Sie zur Aktivierung des Warmwasserbereiters die Anweisungen auf dem Bedienfeld.<br>
+                    <strong>WLAN:</strong> Detaillierte Verbindungsanweisungen finden Sie im Flur des Apartments.
+                `,
+                arrDepartureTitle: "Zusätzliche Informationen & Abreise",
+                arrDepartureText: `
+                    <strong>Identifikation:</strong> Bitte senden Sie uns Ihre Pass- oder Personalausweisnummer.<br>
+                    <strong>Abreisezeit:</strong> Bitte teilen Sie uns Ihre genaue Abreisezeit im Voraus mit.<br>
+                    <strong>Bei der Abreise:</strong> Bitte schalten Sie alle Lichter aus, trennen Sie elektrische Geräte vom Stromnetz und legen Sie die Schlüssel zurück in die Schlüsselbox.
+                `,
+                arrOutro: `Wenn Sie Fragen haben, zögern Sie nicht, uns zu kontaktieren.<br><strong>Mit freundlichen Grüßen, Ioannis.</strong>`,
+                contactHeading: "Buchung & Standort",
+                contactText: "Buchen Sie direkt über WhatsApp. Finden Sie den Weg zu unserem Apartment (Charalampou Psarrou 21 - 4. Stock)[cite: 1] ganz einfach über Google Maps.",
+                whatsappBtn: `
+                    <span class="whatsapp-icon-wrapper">
+                        <img src="whatsapp-icon.png" alt="WhatsApp">
+                    </span>
+                    <span>WhatsApp Chat</span>
+                `,
+                mapBtnText: "Wegbeschreibung zum Apartment",
+                footerText: "&copy; 2026 Anastasia's Apartment. Alle Rechte vorbehalten."
+            },
+            it: {
+                headerTitle: "Anastasia's Apartment",
+                headerSub: "Lavrio • Ospitalità di Lusso. Situato nel centro della città e al porto di Lavrio, posizione ideale per professionisti, dirigenti, lavoratori portuali, accademici e visitatori.",
+                galleryHeading: "Album Fotografico",
+                arrivalBtnText: '<span style="letter-spacing: -1px; margin-right: 6px;">ℹ</span> Istruzioni di Arrivo e Soggiorno',
+                arrTitle: "Benvenuti!",
+                arrWelcome: "Vi ringraziamo molto per aver scelto il nostro alloggio. Siamo lieti di darvi il benvenuto nel nostro appartamento.",
+                arrIntro: "Di seguito troverete informazioni importanti per un arrivo e un soggiorno agevoli:",
+                arrScheduleTitle: "Orari del Soggiorno",
+                arrScheduleText: "<strong>Orario di Arrivo (Check-in):</strong> Dalle 15:00<br><strong>Orario di Partenza (Check-out):</strong> Entro le 11:00",
+                arrKeysTitle: "Procedura di Arrivo e Chiavi",
+                arrKeysText: `
+                    <strong>Ritiro Chiavi:</strong> Le chiavi si trovano nella cassetta di sicurezza (lockbox) a destra dell'ingresso principale, come mostrato nelle foto.<br>
+                    <strong>Codice Lockbox:</strong> Il codice a 4 cifre vi verrà inviato il giorno dell'arrivo.<br>
+                    <strong>Utilizzo:</strong> Tirare giù la protezione, inserire il codice e girare in senso orario.<br>
+                    <strong>Contenuto:</strong> Si prega di ritirare le due chiavi: una per l'ingresso e una per l'appartamento al 4° piano.
+                `,
+                arrAccessTitle: "Accesso all'Appartamento",
+                arrAccessText: `
+                    Dopo aver aperto l'ingresso principale, l'interruttore della luce delle scale si trova sulla parete sinistra. L'ascensore è dritto e a destra.<br>
+                    Salite al 4° piano. L'ingresso del nostro appartamento è proprio di fronte a voi.
+                `,
+                arrAmenitiesTitle: "Servizi dell'Appartamento",
+                arrAmenitiesText: `
+                    <strong>Acqua Calda:</strong> Per attivare lo scaldabagno, seguite le istruzioni sul pannello di controllo.<br>
+                    <strong>Wi-Fi:</strong> Le istruzioni dettagliate si trovano nel corridoio dell'appartamento.
+                `,
+                arrDepartureTitle: "Ulteriori Informazioni e Partenza",
+                arrDepartureText: `
+                    <strong>Identificazione:</strong> Si prega di inviarci il numero di passaporto o carta d'identità.<br>
+                    <strong>Orario di Partenza:</strong> Vi preghiamo di comunicarci in anticipo l'orario esatto di partenza.<br>
+                    <strong>Alla Partenza:</strong> Si prega di spegnere tutte le luci, scollegare i dispositivi e riporre le chiavi nella cassetta di sicurezza.
+                `,
+                arrOutro: `Se avete bisogno di chiarimenti, non esitate a contattarci.<br><strong>Cordiali saluti, Ioannis.</strong>`,
+                contactHeading: "Prenotazione e Posizione",
+                contactText: "Prenota direttamente tramite WhatsApp. Trova facilmente le indicazioni stradali per il nostro appartamento (Charalampou Psarrou 21 - 4° Piano)[cite: 1] su Google Maps.",
+                whatsappBtn: `
+                    <span class="whatsapp-icon-wrapper">
+                        <img src="whatsapp-icon.png" alt="WhatsApp">
+                    </span>
+                    <span>WhatsApp Chat</span>
+                `,
+                mapBtnText: "Indicazioni per l'appartamento",
+                footerText: "&copy; 2026 Anastasia's Apartment. Tutti i diritti riservati."
+            },
+            es: {
+                headerTitle: "Anastasia's Apartment",
+                headerSub: "Lavrio • Hospitalidad de Lujo. Situado en el centro y puerto de Lavrio, ideal para profesionales, ejecutivos, trabajadores portuarios, académicos y visitantes.",
+                galleryHeading: "Álbum de Fotos",
+                arrivalBtnText: '<span style="letter-spacing: -1px; margin-right: 6px;">ℹ</span> Instrucciones de Llegada y Estancia',
+                arrTitle: "¡Bienvenido!",
+                arrWelcome: "Le agradecemos mucho que haya elegido nuestro alojamiento. Estamos encantados de darle la bienvenida a nuestro apartamento.",
+                arrIntro: "A continuación encontrará información importante para una llegada y estancia fluidas:",
+                arrScheduleTitle: "Horarios de Estancia",
+                arrScheduleText: "<strong>Hora de Llegada (Check-in):</strong> A partir de las 15:00<br><strong>Hora de Salida (Check-out):</strong> A más tardar a las 11:00",
+                arrKeysTitle: "Procedimiento de Llegada y Llaves",
+                arrKeysText: `
+                    <strong>Recogida de Llaves:</strong> Las llaves están en la caja de seguridad (lockbox) a la derecha de la entrada principal, como se muestra en las fotos.<br>
+                    <strong>Código de la Caja:</strong> El código de 4 dígitos se le enviará el día de su llegada.<br>
+                    <strong>Uso:</strong> Tire de la cubierta protectora hacia abajo, introduzca el código y gire el mecanismo en sentido horario.<br>
+                    <strong>Contenuto:</strong> Recoja las dos llaves: una para la entrada principal y otra para el apartamento en la 4ª planta.
+                `,
+                arrAccessTitle: "Acceso al Apartamento",
+                arrAccessText: `
+                    Tras abrir la entrada principal, el interruptor de la luz de la escalera está en la pared izquierda. El ascensor está justo enfrente a la derecha.<br>
+                    Sube a la 4ª planta. La entrada de nuestro apartamento está justo en frente.
+                `,
+                arrAmenitiesTitle: "Comodidades del Apartamento",
+                arrAmenitiesText: `
+                    <strong>Agua Caliente:</strong> Para encender el calentador, siga las instrucciones del panel de control.<br>
+                    <strong>Wi-Fi:</strong> Encontrará instrucciones detalladas en el pasillo del apartamento.
+                `,
+                arrDepartureTitle: "Información Adicional y Salida",
+                arrDepartureText: `
+                    <strong>Identificación:</strong> Por favor envíenos su número de pasaporte ou documento de identidad.<br>
+                    <strong>Hora de Salida:</strong> Infórmenos con antelación de su hora exacta de salida.<br>
+                    <strong>Al Salir:</strong> Apague todas las luces, desconecte los aparatos eléctricos y devuelva las llaves a la caja de seguridad.
+                `,
+                arrOutro: `Si necesita cualquier aclaración, no dude en contactarnos.<br><strong>Atentamente, Ioannis.</strong>`,
+                contactHeading: "Reserva y Ubicación",
+                contactText: "Reserve directamente a través de WhatsApp. Encuentre fácilmente la ruta a nuestro apartamento (Charalampou Psarrou 21 - 4ª Planta)[cite: 1] en Google Maps.",
+                whatsappBtn: `
+                    <span class="whatsapp-icon-wrapper">
+                        <img src="whatsapp-icon.png" alt="WhatsApp">
+                    </span>
+                    <span>WhatsApp Chat</span>
+                `,
+                mapBtnText: "Direcciones al apartamento",
+                footerText: "&copy; 2026 Anastasia's Apartment. Todos los derechos reservados."
+            }
+        };
 
-    modal.addEventListener('click', (e) => {
-        if (e.target === modal) {
-            modal.style.display = 'none';
+        function changeLanguage(lang) {
+            const data = translations[lang];
+            if (!data) return;
+            document.getElementById('headerTitle').innerText = data.headerTitle;
+            document.getElementById('headerSub').innerText = data.headerSub;
+            document.getElementById('galleryHeading').innerText = data.galleryHeading;
+            document.getElementById('arrivalBtnText').innerHTML = data.arrivalBtnText;
+            document.getElementById('arrTitle').innerText = data.arrTitle;
+            document.getElementById('arrWelcome').innerText = data.arrWelcome;
+            document.getElementById('arrIntro').innerText = data.arrIntro;
+            document.getElementById('arrScheduleTitle').innerText = data.arrScheduleTitle;
+            document.getElementById('arrScheduleText').innerHTML = data.arrScheduleText;
+            document.getElementById('arrKeysTitle').innerText = data.arrKeysTitle;
+            document.getElementById('arrKeysText').innerHTML = data.arrKeysText;
+            document.getElementById('arrAccessTitle').innerText = data.arrAccessTitle;
+            document.getElementById('arrAccessText').innerHTML = data.arrAccessText;
+            document.getElementById('arrAmenitiesTitle').innerText = data.arrAmenitiesTitle;
+            document.getElementById('arrAmenitiesText').innerHTML = data.arrAmenitiesText;
+            document.getElementById('arrDepartureTitle').innerText = data.arrDepartureTitle;
+            document.getElementById('arrDepartureText').innerHTML = data.arrDepartureText;
+            document.getElementById('arrOutro').innerHTML = data.arrOutro;
+            document.getElementById('contactHeading').innerText = data.contactHeading;
+            document.getElementById('contactText').innerText = data.contactText;
+            document.getElementById('whatsappBtn').innerHTML = data.whatsappBtn;
+            document.getElementById('mapBtnText').innerText = data.mapBtnText;
+            document.getElementById('footerText').innerHTML = data.footerText;
         }
-    });
-
-    prevBtn.addEventListener('click', () => {
-        showImage(currentIndex - 1);
-    });
-
-    nextBtn.addEventListener('click', () => {
-        showImage(currentIndex + 1);
-    });
-
-    document.addEventListener('keydown', (e) => {
-        if (modal.style.display === 'flex') {
-            if (e.key === 'ArrowLeft') showImage(currentIndex - 1);
-            if (e.key === 'ArrowRight') showImage(currentIndex + 1);
-            if (e.key === 'Escape') modal.style.display = 'none';
-        }
-    });
-</script>
-
+    </script>
 </body>
 </html>
